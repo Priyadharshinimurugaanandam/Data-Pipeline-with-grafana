@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  mongo-data:
+  grafana-storage:
+
+
